@@ -27,13 +27,15 @@ public:
     
     static std::string GetHash( const std::string& hash_type, const std::string buff )
     {
+        std::string result = "";
+        
         if( hash_type == MD5_HASH )
         {
             boost::uuids::detail::md5 hash;
             boost::uuids::detail::md5::digest_type digest;
             hash.process_bytes( buff.data(), buff.size() );
             hash.get_digest( digest );
-            return toString( digest );
+            result = toString( digest );
         }
         else if( hash_type == CRC32_HASH )
         {
@@ -42,8 +44,10 @@ public:
             
             std::stringstream ss;
             ss << result.checksum();
-            return ss.str();
+            result = ss.str();
         }
+        
+        return result;
     }
     
     static bool IsSupportedHashType( const std::string& hash_type )
@@ -79,7 +83,7 @@ public:
     {
         ReadByBlock( block_size, hash );
         
-        if( mHashBlocks.size() < block_number )
+        if( static_cast< int >( mHashBlocks.size() ) < block_number )
             return false;
         
         block = mHashBlocks[ block_number ];
@@ -211,7 +215,7 @@ std::list< std::pair< std::string, size_t > > CollectFiles( const std::vector<st
     return paths;
 }
 
-int main( int argc, const char *argv[] ) {
+void main( int argc, const char *argv[] ) {
     
     int scan_level = 0;
     size_t file_size = 0;
