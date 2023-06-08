@@ -6,8 +6,6 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project(bayan VERSION ${PROJECT_VESRION})
 
-include_directories(${Boost_INCLUDE_DIR})
-
 option(WITH_BOOST_TEST "Whether to build Boost test" ON)
 
 configure_file(version.h.in version.h)
@@ -18,6 +16,7 @@ add_library(bayan lib.cpp)
 set_target_properties(bayan_cli bayan PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
+    INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
 target_include_directories(bayan
@@ -26,6 +25,9 @@ target_include_directories(bayan
 
 target_link_libraries(bayan_cli PRIVATE
     ${Boost_LIBRARIES}
+)
+
+target_link_libraries(bayan_cli PRIVATE
     bayan
 )
 
