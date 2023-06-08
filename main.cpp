@@ -35,7 +35,7 @@ public:
             boost::uuids::detail::md5::digest_type digest;
             hash.process_bytes( buff.data(), buff.size() );
             hash.get_digest( digest );
-            result = toString( digest );
+            return toString( digest );
         }
         else if( hash_type == CRC32_HASH )
         {
@@ -44,7 +44,7 @@ public:
             
             std::stringstream ss;
             ss << result.checksum();
-            result = ss.str();
+            return ss.str();
         }
         
         return result;
@@ -215,7 +215,7 @@ std::list< std::pair< std::string, size_t > > CollectFiles( const std::vector<st
     return paths;
 }
 
-void main( int argc, const char *argv[] ) {
+int main( int argc, const char *argv[] ) {
     
     int scan_level = 0;
     size_t file_size = 0;
@@ -277,12 +277,12 @@ void main( int argc, const char *argv[] ) {
     }
     
     if( include_dirs.empty() )
-        return;
+        return 0;
     
     if( !Hash::IsSupportedHashType( hash ) )
     {
         std::cout << "Not supported hash type" << std::endl;
-        return;
+        return 0;
     }
     
     std::list< std::pair< std::string, size_t > > all_matching_files = CollectFiles( include_dirs, exclude_dirs, masks, file_size, scan_level );
@@ -292,7 +292,7 @@ void main( int argc, const char *argv[] ) {
     if( all_matching_files.size() < 2 )
     {
         std::cout << "Nothing to match" << std::endl;
-        return;
+        return 0;
     }
     
     FilesMatcher files_matcher( block_size, std::move( hash ) );
@@ -365,5 +365,5 @@ void main( int argc, const char *argv[] ) {
         ++it;
     }
     
-    return;
+    return 0;
 }
