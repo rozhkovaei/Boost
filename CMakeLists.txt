@@ -16,6 +16,9 @@ add_library(bayan lib.cpp)
 set_target_properties(bayan_cli bayan PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
+)
+
+set_target_properties(bayan_cli PROPERTIES
     INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
