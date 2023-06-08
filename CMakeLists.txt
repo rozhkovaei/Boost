@@ -25,11 +25,8 @@ target_include_directories(bayan
 )
 
 target_link_libraries(bayan_cli PRIVATE
+    ${Boost_LIBRARIES}
     bayan
-)
-
-target_link_libraries(bayan
-        ${Boost_LIBRARIES}
 )
 
 if(WITH_BOOST_TEST)
