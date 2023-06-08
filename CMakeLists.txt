@@ -18,12 +18,12 @@ set_target_properties(bayan_cli bayan PROPERTIES
     CXX_STANDARD_REQUIRED ON
 )
 
-set_target_properties(bayan_cli PROPERTIES
-    INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
-)
-
 target_include_directories(bayan
     PRIVATE "${CMAKE_BINARY_DIR}"
+)
+
+target_include_directories(bayan_cli
+    PRIVATE "${Boost_INCLUDE_DIR}"
 )
 
 target_link_libraries(bayan_cli PRIVATE
