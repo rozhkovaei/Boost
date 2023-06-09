@@ -6,7 +6,7 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project(bayan VERSION ${PROJECT_VESRION})
 
-find_package(Boost)
+find_package(Boost COMPONENTS program_options REQUIRED)
 
 include_directories(SYSTEM ${Boost_INCLUDE_DIR})
 
