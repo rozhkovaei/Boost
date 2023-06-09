@@ -6,6 +6,10 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project(bayan VERSION ${PROJECT_VESRION})
 
+find_package(Boost)
+
+include_directories(SYSTEM ${Boost_INCLUDE_DIR})
+
 option(WITH_BOOST_TEST "Whether to build Boost test" ON)
 
 configure_file(version.h.in version.h)
@@ -22,11 +26,7 @@ target_include_directories(bayan
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
-target_include_directories(bayan_cli
-    PRIVATE "${Boost_INCLUDE_DIR}"
-)
-
-target_link_libraries(bayan_cli PRIVATE
+target_link_libraries(bayan 
     ${Boost_LIBRARIES}
 )
 
