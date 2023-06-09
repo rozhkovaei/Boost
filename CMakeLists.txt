@@ -26,7 +26,7 @@ target_include_directories(bayan
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
-target_link_libraries(bayan_cli
+target_link_libraries(bayan_cli PRIVATE
     ${Boost_LIBRARIES}
 )
 
