@@ -6,7 +6,11 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project(bayan VERSION ${PROJECT_VESRION})
 
-find_package(Boost COMPONENTS program_options boost_regex REQUIRED)
+set(CMAKE_PREFIX_PATH ${Boost_LIBRARIES}\\cmake)
+
+find_package(Boost CONFIG REQUIRED COMPONENTS regex)
+
+find_package(Boost COMPONENTS program_options REQUIRED)
 
 include_directories(SYSTEM ${Boost_INCLUDE_DIR})
 
