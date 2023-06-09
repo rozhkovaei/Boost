@@ -234,7 +234,7 @@ int main( int argc, const char *argv[] ) {
                 ( "exclude-dir,E", po::value< std::vector< std::string > >( &exclude_dirs )->multitoken(), "directories excluded from scan" )
                 ( "scan-level,L", po::value< int >( &scan_level )->default_value(0), "scan level : 1 - all directories, 0 - without subdirs" )
                 ( "file-size,F", po::value< size_t >( &file_size )->default_value(1), "min file size (bytes)" )
-                ( "mask,M", po::value< std::vector< std::string > >( &masks )->multitoken(), "file name mask" )
+                ( "mask,M", po::value< std::vector< std::string > >( &masks )->multitoken(), "file name masks" )
                 ( "block-size,S", po::value< size_t >( &block_size )->default_value(5), "reading block size (bytes)" )
                 ( "hash,H", po::value< std::string >( &hash )->default_value("md5"), "hash algorithm (md5 or crc32)" );
         
