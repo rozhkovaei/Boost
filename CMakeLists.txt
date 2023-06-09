@@ -6,8 +6,6 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project(bayan VERSION ${PROJECT_VESRION})
 
-set(CMAKE_PREFIX_PATH ${Boost_LIBRARIES}\\cmake)
-
 find_package(Boost CONFIG REQUIRED COMPONENTS regex)
 
 find_package(Boost COMPONENTS program_options REQUIRED)
@@ -33,6 +31,8 @@ target_include_directories(bayan
 target_link_libraries(bayan_cli PRIVATE
     ${Boost_LIBRARIES}
 )
+
+target_link_libraries(bayan_cli PRIVATE Boost::regex)
 
 target_link_libraries(bayan_cli PRIVATE
     bayan
